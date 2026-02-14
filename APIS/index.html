@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Proyecto Créditos 2025</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Proyecto Desarrollo de APIs e Inteligencia Artificial</h1>
+    <p>Sistema de Evaluación de Créditos 2025</p>
+</header>
+
+<section class="card">
+    <h2>Introducción</h2>
+    <p>
+        Este proyecto tiene como objetivo preparar un dataset financiero
+        para su futura implementación en una API utilizando Python.
+        Se aplicaron técnicas de limpieza de datos y validación estructurada.
+    </p>
+</section>
+
+<section class="card">
+    <h2>Objetivos</h2>
+    <ul>
+        <li>Seleccionar un dataset real de créditos.</li>
+        <li>Realizar limpieza básica utilizando Pandas.</li>
+        <li>Modularizar la limpieza en funciones puras.</li>
+        <li>Crear esquemas Pydantic para validación de datos.</li>
+        <li>Preparar el proyecto para una futura API.</li>
+    </ul>
+</section>
+
+<section class="card">
+    <h2>Enfoque del Proyecto</h2>
+    <p>
+        Se trabajó con un dataset de 5,197 registros financieros.
+        Se aplicaron procesos de normalización, eliminación de nulos,
+        eliminación de duplicados y creación de nuevas variables.
+    </p>
+</section>
+
+<section class="card">
+    <h2>Proyecto Fase 1 - Limpieza con Pandas</h2>
+    <pre>
+# limpieza.py
+
+import pandas as pd
+
+def cargar_datos(ruta: str) -> pd.DataFrame:
+    return pd.read_excel(ruta)
+
+def normalizar_columnas(df: pd.DataFrame) -> pd.DataFrame:
+    df.columns = df.columns.str.lower()
+    return df
+
+def eliminar_nulos(df: pd.DataFrame) -> pd.DataFrame:
+    return df.dropna()
+
+def eliminar_duplicados(df: pd.DataFrame) -> pd.DataFrame:
+    return df.drop_duplicates()
+
+def crear_ratio_aprobacion(df: pd.DataFrame) -> pd.DataFrame:
+    df["ratio_aprobacion"] = df["cupo_aprobado"] / df["cupo_solicitado"]
+    return df
+    </pre>
+</section>
+
+<section class="card">
+    <h2>Proyecto Fase 2 - Esquemas Pydantic</h2>
+    <pre>
+# schemas.py
+
+from pydantic import BaseModel
+from datetime import datetime
+
+class CreditInputSchema(BaseModel):
+    customer_id: int
+    loandate: datetime
+    age: float
+    income: float
+    cupo_solicitado: float
+    score_1: int
+    score_2: int
+    score_3: int
+    score_4: int
+
+class CreditOutputSchema(BaseModel):
+    customer_id: int
+    cupo_solicitado: float
+    cupo_aprobado: float
+    ratio_aprobacion: float
+    resultado_cobranza: str
+    </pre>
+</section>
+
+<section class="card">
+    <h2>Dataset Utilizado</h2>
+    <p>
+        Archivo: BD_Credit_2025_completo.xlsx <br>
+        Registros: 5,197 <br>
+        Columnas: 22 variables financieras
+    </p>
+</section>
+
+<section class="card">
+    <h2>Conclusión</h2>
+    <p>
+        El proyecto permitió transformar un dataset crudo en una estructura
+        preparada para producción, aplicando buenas prácticas de desarrollo,
+        modularización y validación profesional de datos.
+    </p>
+</section>
+
+<footer>
+    <p>Universidad - Desarrollo de APIs e IA 2026</p>
+</footer>
+
+</body>
+</html>
