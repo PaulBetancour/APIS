@@ -1,25 +1,30 @@
-# APIS
-Proyecto Desarrollo de APIs e Inteligencia Artificial
-Sistema de Evaluación de Créditos 2025
+# 📊 Sistema de Gestión de Microcréditos 2025 - API de Procesamiento
 
-Introducción
-Este proyecto tiene como objetivo preparar un dataset financiero para su futura implementación en una API utilizando Python. Se aplicaron técnicas de limpieza de datos y validación estructurada.
+![Python](https://img.shields.io/badge/Python-3.11.9-blue)
+![Framework](https://img.shields.io/badge/Framework-Flask-green)
+![Data](https://img.shields.io/badge/Library-Pandas-orange)
 
-Objetivos
-Seleccionar un dataset real de créditos.
-Realizar limpieza básica utilizando Pandas.
-Modularizar la limpieza en funciones puras.
-Crear esquemas Pydantic para validación de datos.
-Preparar el proyecto para una futura API.
+## 📝 Introducción
+Este proyecto forma parte del curso **PYTHON PARA DESARROLLO DE APIS E INTELIGENCIA ARTIFICIAL**. Se enfoca en el procesamiento, validación y limpieza de datos de microcréditos para personas naturales, utilizando un pipeline modular y servicios web.
 
+## 📉 Análisis Descriptivo del Dataset
+El dataset contiene información crítica de solicitantes, incluyendo:
+* **Demográficos:** Edad, Ciudad, Actividad laboral.
+* **Financieros:** Ingresos, Experiencia bancaria, Cupos solicitados vs. aprobados.
+* **Riesgo:** 4 niveles de Score crediticio y comportamiento histórico.
 
-Enfoque del Proyecto
-Se trabajó con un dataset de 5,197 registros financieros. Se aplicaron procesos de normalización, eliminación de nulos, eliminación de duplicados y creación de nuevas variables.
+### Hallazgos Principales:
+- **Ratio de Aprobación:** Se observa una correlación directa entre el `score_4` y la aprobación del cupo.
+- **Calidad de Datos:** Se identificaron valores nulos en el historial de delincuencia que fueron tratados mediante limpieza automatizada.
 
-Dataset Utilizado
-Archivo: BD_Credit_2025_completo.xlsx
-Registros: 5,197
-Columnas: 22 variables financieras
+## 🚀 Estructura del Proyecto
+- `app.py`: Servidor Flask con los endpoints de la API.
+- `logic/cleaning.py`: Funciones puras de procesamiento de datos.
+- `schemas/models.py`: Validación de datos con Pydantic.
+- `data/`: Dataset original y procesado.
 
-Conclusión
-El proyecto permitió transformar un dataset crudo en una estructura preparada para producción, aplicando buenas prácticas de desarrollo, modularización y validación profesional de datos.
+## 🛠️ Instalación y Uso
+1. Clonar el repo.
+2. Crear entorno virtual: `python -m venv venv`.
+3. Instalar dependencias: `pip install -r requirements.txt`.
+4. Correr la API: `python app.py`.
