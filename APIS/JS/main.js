@@ -1,27 +1,68 @@
-document.getElementById("creditForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
 
-    let income = parseFloat(document.getElementById("income").value);
-    let cupo = parseFloat(document.getElementById("cupo_solicitado").value);
-    let score1 = parseInt(document.getElementById("score_1").value);
-    let score2 = parseInt(document.getElementById("score_2").value);
-    let score3 = parseInt(document.getElementById("score_3").value);
-    let score4 = parseInt(document.getElementById("score_4").value);
+    // ===============================
+    // GRÁFICA 1: DISTRIBUCIÓN EDAD
+    // ===============================
 
-    let promedioScore = (score1 + score2 + score3 + score4) / 4;
+    const edadCtx = document.getElementById("edadChart");
 
-    let ratio = income / cupo;
+    new Chart(edadCtx, {
+        type: "bar",
+        data: {
+            labels: ["18-25", "26-35", "36-45", "46-60", "60+"],
+            datasets: [{
+                label: "Cantidad de Clientes",
+                data: [120, 250, 180, 95, 30],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 
-    let resultado = "";
+    // =====================================
+    // GRÁFICA 2: INGRESO VS CUPO SOLICITADO
+    // =====================================
 
-    if (promedioScore > 650 && ratio > 0.3) {
-        resultado = "Crédito Aprobado ✅";
-    } else {
-        resultado = "Crédito Rechazado ❌";
-    }
+    const ingresoCtx = document.getElementById("ingresoChart");
 
-    document.getElementById("resultText").innerHTML =
-        `Promedio Score: ${promedioScore.toFixed(2)} <br>
-         Ratio Ingreso/Cupo: ${ratio.toFixed(2)} <br>
-         <strong>${resultado}</strong>`;
+    new Chart(ingresoCtx, {
+        type: "scatter",
+        data: {
+            datasets: [{
+                label: "Ingreso vs Cupo",
+                data: [
+                    { x: 1000, y: 8000 },
+                    { x: 1500, y: 10000 },
+                    { x: 2000, y: 15000 },
+                    { x: 2500, y: 18000 },
+                    { x: 3000, y: 25000 }
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: "Ingreso Mensual"
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: "Cupo Solicitado"
+                    }
+                }
+            }
+        }
+    });
+
 });
