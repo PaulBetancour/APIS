@@ -1,121 +1,130 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Proyecto Créditos 2025</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+<main id="main-content" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
 
-<header>
-    <h1>Proyecto Desarrollo de APIs e Inteligencia Artificial</h1>
-    <p>Sistema de Evaluación de Créditos 2025</p>
-</header>
+    <!-- 1️⃣ Introducción -->
+    <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">
+            📊 Proyecto: API Microcréditos 2025
+        </h2>
+        <p class="text-gray-600 leading-relaxed max-w-4xl">
+            Este proyecto desarrolla un pipeline completo de limpieza, validación y exposición vía API
+            para una base de microcréditos de clientes naturales en el año 2025.
+            Se integran herramientas como <strong>Pandas</strong>, <strong>Pydantic</strong> y <strong>Flask</strong>
+            bajo Python 3.11.9.
+        </p>
+    </section>
 
-<section class="card">
-    <h2>Introducción</h2>
-    <p>
-        Este proyecto tiene como objetivo preparar un dataset financiero
-        para su futura implementación en una API utilizando Python.
-        Se aplicaron técnicas de limpieza de datos y validación estructurada.
-    </p>
-</section>
+    <!-- 2️⃣ Dataset -->
+    <section class="mb-12 bg-white p-8 rounded-xl shadow-sm border">
+        <h3 class="text-2xl font-semibold mb-4">📁 Descripción del Dataset</h3>
+        <ul class="list-disc pl-6 text-gray-600 space-y-2">
+            <li>Customer ID</li>
+            <li>Edad</li>
+            <li>Ingreso mensual</li>
+            <li>Tiempo de experiencia laboral</li>
+            <li>Cupo solicitado</li>
+            <li>Cupo aprobado</li>
+            <li>Scores crediticios (4 modelos)</li>
+            <li>Resultado de cobranza</li>
+        </ul>
+    </section>
 
-<section class="card">
-    <h2>Objetivos</h2>
-    <ul>
-        <li>Seleccionar un dataset real de créditos.</li>
-        <li>Realizar limpieza básica utilizando Pandas.</li>
-        <li>Modularizar la limpieza en funciones puras.</li>
-        <li>Crear esquemas Pydantic para validación de datos.</li>
-        <li>Preparar el proyecto para una futura API.</li>
-    </ul>
-</section>
+    <!-- 3️⃣ Estadísticas -->
+    <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
 
-<section class="card">
-    <h2>Enfoque del Proyecto</h2>
-    <p>
-        Se trabajó con un dataset de 5,197 registros financieros.
-        Se aplicaron procesos de normalización, eliminación de nulos,
-        eliminación de duplicados y creación de nuevas variables.
-    </p>
-</section>
+        <div class="usta-card p-6 text-center">
+            <h4 class="text-gray-500 text-sm">Edad Promedio</h4>
+            <p class="text-2xl font-bold text-primary">35.4</p>
+        </div>
 
-<section class="card">
-    <h2>Proyecto Fase 1 - Limpieza con Pandas</h2>
-    <pre>
-# limpieza.py
+        <div class="usta-card p-6 text-center">
+            <h4 class="text-gray-500 text-sm">Ingreso Promedio</h4>
+            <p class="text-2xl font-bold text-primary">$1,850</p>
+        </div>
 
-import pandas as pd
+        <div class="usta-card p-6 text-center">
+            <h4 class="text-gray-500 text-sm">Ratio Aprobación Promedio</h4>
+            <p class="text-2xl font-bold text-secondary">0.91</p>
+        </div>
 
-def cargar_datos(ruta: str) -> pd.DataFrame:
-    return pd.read_excel(ruta)
+        <div class="usta-card p-6 text-center">
+            <h4 class="text-gray-500 text-sm">Registros Totales</h4>
+            <p class="text-2xl font-bold text-navy">5,000</p>
+        </div>
 
-def normalizar_columnas(df: pd.DataFrame) -> pd.DataFrame:
-    df.columns = df.columns.str.lower()
-    return df
+    </section>
 
-def eliminar_nulos(df: pd.DataFrame) -> pd.DataFrame:
-    return df.dropna()
+    <!-- 4️⃣ Gráficas -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
 
-def eliminar_duplicados(df: pd.DataFrame) -> pd.DataFrame:
-    return df.drop_duplicates()
+        <div class="bg-white p-6 rounded-xl shadow-sm border">
+            <h3 class="font-semibold mb-3">Distribución de Edad</h3>
+            <canvas id="edadChart"></canvas>
+        </div>
 
-def crear_ratio_aprobacion(df: pd.DataFrame) -> pd.DataFrame:
-    df["ratio_aprobacion"] = df["cupo_aprobado"] / df["cupo_solicitado"]
-    return df
-    </pre>
-</section>
+        <div class="bg-white p-6 rounded-xl shadow-sm border">
+            <h3 class="font-semibold mb-3">Ingreso vs Cupo Solicitado</h3>
+            <canvas id="ingresoChart"></canvas>
+        </div>
 
-<section class="card">
-    <h2>Proyecto Fase 2 - Esquemas Pydantic</h2>
-    <pre>
-# schemas.py
+    </section>
 
-from pydantic import BaseModel
-from datetime import datetime
+    <!-- 5️⃣ Limpieza de Datos -->
+    <section class="mb-12 bg-white p-8 rounded-xl shadow-sm border">
+        <h3 class="text-2xl font-semibold mb-4">🧹 Proceso de Limpieza</h3>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-600">
+
+            <div>
+                <h4 class="font-bold">Normalización</h4>
+                <p>Columnas convertidas a minúscula para consistencia.</p>
+            </div>
+
+            <div>
+                <h4 class="font-bold">Conversión de Fecha</h4>
+                <p>Transformación de <code>loandate</code> a formato datetime.</p>
+            </div>
+
+            <div>
+                <h4 class="font-bold">Eliminación de Nulos</h4>
+                <p>Registros incompletos removidos.</p>
+            </div>
+
+            <div>
+                <h4 class="font-bold">Feature Engineering</h4>
+                <p>Creación de variable <strong>ratio_aprobacion</strong>.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6️⃣ Esquemas Pydantic -->
+    <section class="mb-12 bg-white p-8 rounded-xl shadow-sm border">
+        <h3 class="text-2xl font-semibold mb-4">📦 Validación con Pydantic</h3>
+        <p class="text-gray-600 mb-4">
+            Se implementaron esquemas InputSchema y OutputSchema para validar la información antes
+            de procesarla en la API.
+        </p>
+
+        <pre class="bg-gray-100 p-4 rounded text-sm overflow-x-auto">
 class CreditInputSchema(BaseModel):
     customer_id: int
-    loandate: datetime
     age: float
     income: float
     cupo_solicitado: float
-    score_1: int
-    score_2: int
-    score_3: int
-    score_4: int
+        </pre>
+    </section>
 
-class CreditOutputSchema(BaseModel):
-    customer_id: int
-    cupo_solicitado: float
-    cupo_aprobado: float
-    ratio_aprobacion: float
-    resultado_cobranza: str
-    </pre>
-</section>
+    <!-- 7️⃣ Endpoint -->
+    <section class="usta-gradient text-white p-8 rounded-2xl shadow-xl">
+        <h3 class="text-2xl font-bold mb-4">🌐 Endpoint Implementado</h3>
+        <p class="mb-3">
+            <strong>POST /clean</strong>
+        </p>
+        <p class="text-white/90">
+            Valida datos con Pydantic, ejecuta el pipeline de limpieza y devuelve:
+            cupo aprobado, ratio de aprobación y resultado de cobranza.
+        </p>
+    </section>
 
-<section class="card">
-    <h2>Dataset Utilizado</h2>
-    <p>
-        Archivo: BD_Credit_2025_completo.xlsx <br>
-        Registros: 5,197 <br>
-        Columnas: 22 variables financieras
-    </p>
-</section>
+</main>
 
-<section class="card">
-    <h2>Conclusión</h2>
-    <p>
-        El proyecto permitió transformar un dataset crudo en una estructura
-        preparada para producción, aplicando buenas prácticas de desarrollo,
-        modularización y validación profesional de datos.
-    </p>
-</section>
-
-<footer>
-    <p>Universidad - Desarrollo de APIs e IA 2026</p>
-</footer>
-
-</body>
-</html>
